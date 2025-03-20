@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Login Page{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Login</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    <p class="message">{{ msg }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form method="POST">
+            <label for="nm">Username:</label>
+            <input type="text" id="nm" name="nm" placeholder="Enter your username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <style>
+        .container {
+            width: 400px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            color: red;
+            text-align: center;
+        }
+    </style>
+{% endblock %}

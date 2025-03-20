@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Add Post{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Add a Post</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    <p class="message">{{ msg }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form method="POST">
+            <label for="content">Your Post:</label>
+            <textarea id="content" name="content" placeholder="Write your post here..." required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <style>
+        .container {
+            width: 600px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            height: 150px;
+        }
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .message {
+            color: red;
+            text-align: center;
+        }
+    </style>
+{% endblock %}

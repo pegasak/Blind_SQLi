@@ -1,0 +1,21 @@
+version: '3.8'  # Версия можно оставить, но она устарела и не обязательна
+
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+      - SECRET_KEY=${SECRET_KEY}
+      - DATABASE_URI=sqlite:////app/instance/users.sqlite3  # Путь к базе данных
+      - ADMIN=${ADMIN}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    volumes:
+      - .:/app  # Монтируем текущую директорию в контейнер
+      - db_data:/app/instance  # Том для хранения базы данных
+
+volumes:
+  db_data:  # Определяем том для базы данных
