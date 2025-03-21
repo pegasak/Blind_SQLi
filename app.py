@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.getenv('SECRET_KEY', 'default_secret_key')
+app.secret_key = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI', 'sqlite:///default.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.permanent_session_lifetime = timedelta(minutes=5)
@@ -99,7 +99,7 @@ def register():
     return render_template("register.html")
 
 
-@app.route("/check_password", methods=["GET", "POST"])
+@app.route("/api/auth_verify", methods=["GET", "POST"])
 def check_password():
     """Эндпоинт для Blind SQL Injection"""
     if request.method == "GET":
